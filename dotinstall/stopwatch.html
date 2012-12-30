@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+	<meta charset = "UTF-8" />
+	<title>ストップウォッチ</title>
+</head>
+
+<body>
+<h1>ストップウォッチ</h1>
+<div id = "sec" style = "font-size:120px">0.0</div>
+<input type = "button" value ="Start" onclick = "start();">
+<input type = "button" value ="Stop" onclick = "stop();">
+<input type = "button" value ="Reset" onclick = "reset();">
+<script>
+var sec = 0.0;
+var timerId;
+
+function start() {
+	timerId = setInterval(function() {
+		sec += 0.1;
+		document.getElementById('sec').innerHTML = Math.round(sec*10)/10;
+	}, 100);
+}
+
+function stop() {
+	clearInterval(timerId);
+}
+
+function reset() {
+	document.getElementById('sec').innerHTML = '0.0';
+	sec = 0.0;
+}
+
+</script>
+</body>
+</html>

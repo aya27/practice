@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "ja">
+	<head>
+		<meta charset = "UTF-8" />
+		<title>スロットマシーン</title>
+	</head>
+
+	<body>
+		<h1>スロットマシーン</h1>
+		<span id="spin_0">0</span> <input type="button" value="stop!" onclick="stop();">
+		<span id="spin_1">0</span> <input type="button" value="stop!" onclick="stop();">
+		<span id="spin_2">0</span> <input type="button" value="stop!" onclick="stop();">
+
+		<script>
+		var i = 0;
+		var r = [];
+		var timerId;
+
+		function spin() {
+			document.getElementById('spin_'+i).innerHTML = Math.floor(Math.random() * 10);
+			timerId = setTimeout(spin, 100);
+		}
+		spin();
+
+		function stop(){
+			r[i] = document.getElementById('spin_'+i).innerHTML;
+			i++;
+			if (i > 2){
+				clearTimeout(timerId);
+				// console.log(r);
+				r.sort();
+				if (r[0] == r[1] && r[0] == r[2]){
+					alert('３つそろった！');
+				} else if (r[0] == r[1] || r[1] == r[2]){
+					alert('2つそろった！');
+				} else {
+					alert('残念！');
+				}
+			}
+		}
+		</script>
+	</body>
+</html>
